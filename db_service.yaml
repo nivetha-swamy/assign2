@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mysqldb
+  labels:
+    app.kubernetes.io/name: db
+  
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+  namespace: mysqldb
+  labels:
+    app.kubernetes.io/name: db
+    
+spec:
+  ports:
+  - port: 3306
+    targetPort: 3306
+  selector:
+    app.kubernetes.io/name: db
