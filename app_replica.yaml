@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  labels:
+    app.kubernetes.io/name: myapp
+  name: app
+spec:
+  replicas: 3
+  selector:
+    matchLabels: 
+      app.kubernetes.io/name: myapp
+  template:
+    metadata:
+      labels:
+        myappapp.kubernetes.io/name: myapp
+    spec:
+      containers:
+      - image: 678092784151.dkr.ecr.us-east-1.amazonaws.com/myrepo_clo835:my_app
+        name: app
+        ports:
+        - containerPort: 80
+        env:
+        - name: DBPORT
+          value: "3306"
+        - name: DBHOST
+          value: "10.244.0.2"
+        - name: DBUSER
+          value: root
+        - name: DBPWD
+          value: pw
