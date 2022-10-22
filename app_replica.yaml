@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        myapp.kubernetes.io/name: myapp
+        app.kubernetes.io/name: myapp
     spec:
       containers:
       - image: 678092784151.dkr.ecr.us-east-1.amazonaws.com/myrepo_clo835:my_app
