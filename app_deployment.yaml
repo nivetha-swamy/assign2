@@ -10,26 +10,23 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app
   labels:
     app.kubernetes.io/name: myapp
+  name: app
   namespace: app
-    
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app.kubernetes.io/name: myapp
-      
-  replicas: 3
   template:
     metadata:
       labels:
         app.kubernetes.io/name: myapp
-
     spec:
       containers:
-      - name: myapp
-        image: 678092784151.dkr.ecr.us-east-1.amazonaws.com/myrepo_clo835:my_app
+      - image: 678092784151.dkr.ecr.us-east-1.amazonaws.com/myrepo_clo835:my_app_v2.0
+        name: app
         ports:
         - containerPort: 80
         env:
@@ -40,4 +37,6 @@ spec:
         - name: DBUSER
           value: root
         - name: DBPWD
-	  value: pw
+          value: pw
+
+
